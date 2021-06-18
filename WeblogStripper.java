@@ -168,7 +168,7 @@ public class WeblogStripper {
 					System.out.println("Please type name or bot to add.");
 					String name = bots.nextLine();
 					specNames.insert(name);
-					specWrites.write(name);
+					specWrites.write("\r\n" + name);
 				}
 			} else if (addOrRemove == 3) {// Removes a name or bot from the document
 				System.out.println("Are you sure you want remove a bot? 1 for yes, 2 for no.");
@@ -419,21 +419,23 @@ public class WeblogStripper {
 							userFound = true;
 						}
 					}
-					for (int i = 0; i < specUsers.size(); i++) {// Checks to see if the line contains any of these
-																// usernames
-						// or bots, if so, the line is deleted.
+					if (userFound == false) {
+						for (int i = 0; i < specUsers.size(); i++) {// Checks to see if the line contains any of these
+																	// usernames
+							// or bots, if so, the line is deleted.
 
-						if (line.contains(specUsers.get(i)) && !line.isEmpty() && specUsers.get(i).length() > 0) {// also
-																													// checks
-							// if line is
-							// empty.
-							String str[] = line.split("\\s", 7);
+							if (line.contains(specUsers.get(i)) && !line.isEmpty() && specUsers.get(i).length() > 0) {// also
+																														// checks
+								// if line is
+								// empty.
+								String str[] = line.split("\\s", 7);
+								//System.out.println(str[6]);
+								if (str[6].contains(specUsers.get(i))) {
+									line = "";
+									userFound = true;
+								}
 
-							if (str[5].contains(specUsers.get(i))) {
-								line = "";
-								userFound = true;
 							}
-
 						}
 					}
 					if (userFound == false) {
@@ -578,170 +580,57 @@ public class WeblogStripper {
 
 							if (str[2].contains("/ads.txt"))
 								line = "";
-						} // else if (line.contains("/vals/presurvey")) {
-							// This if statement checks if any part of the line contains .gif
-							// If the line contains .gif, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains("/vals/surveynew")) {
-							// This if statement checks if any part of the line contains .gif
-							// If the line contains .gif, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains("/vals/ustypes")) {
-							// This if statement checks if any part of the line contains .gif
-							// If the line contains .gif, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains(".gif")) {
-							// This if statement checks if any part of the line contains .gif
-							// If the line contains .gif, the line is deleted.
-							// line = "";
-							// } else if (line.contains(".jpg")) {
-							// This if statement checks if any part of the line contains .jpg
-							// If the line contains .jpg, the line is deleted.
-							// line = "";
-							// } else if (line.contains(".jpeg")) {
-							// This if statement checks if any part of the line contains .jpeg
-							// If the line contains .jpeg, the line is deleted.
-							// line = "";
-							// } else if (line.contains(".php")) {
-							// This if statement checks if any part of the line contains .php
-							// If the line contains .php, the line is deleted.
-							// line = "";
-							// } else if (line.contains(".png")) {
-							// This if statement checks if any part of the line contains .png
-							// If the line contains .png, the line is deleted.
-							// line = "";
-							// } else if (line.contains(".aspx")) {
-							// This if statement checks if any part of the line contains .aspx
-							// If the line contains .aspx, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains(".xml")) {
-							// This if statement checks if any part of the line contains .xml
-							// If the line contains .xnk, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains(".ru/")) {
-							// This if statement checks if any part of the line contains .ru/
-							// If the line contains .ru/, the line is deleted. (Russing spam)
-							// line = "";
-							// } else if (line.contains("wp-admin")) {
-							// This if statement checks if any part of the line contains wp-admin
-							// If the line contains wp-admin, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains("wp-includes")) {
-							// This if statement checks if any part of the line contains wp-includes
-							// If the line contains wp-includes, the line is deleted.
-							// line = "";
-							// } else if (line.contains("erroraccess.shtml")) {
-							// This if statement checks if any part of the line contains erroraccess.shtml
-							// If the line contains erroraccess.shtml, the line is deleted.
-							// line = "";
-							// } else if (line.contains("errornouser.shtml")) {
-							// This if statement checks if any part of the line contains errornouser.shtml
-							// If the line contains errornouser.shtml, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains("/about/newsletter/sbinews.shtml")) {
-							// This if statement checks if any part of the line contains
-							// /about/newsletter/sbinews.shtml
-							// If the line contains /about/newsletter/sbinews.shtml, the line is deleted.
-							// line = "";
-							// } else if (line.contains("/logout.asp")) {
-							// This if statement checks if any part of the line contains /logout.asp
-							// If the line contains /logout.asp, the line is deleted.
-							// line = "";
-							// } else if (line.contains("/search.shtml")) {
-							// This if statement checks if any part of the line contains /search.shtml
-							// If the line contains /search.shtml, the line is deleted.
-							// line = "";
-							// } else if (line.contains("/index.shtml")) {
-							// This if statement checks if any part of the line contains /index.shtml
-							// If the line contains /index.shtml, the line is deleted.
-							// line = "";
-							// }
-							// else if (line.contains("OpenLinkProfiler")) {
-							// This if statement will check if the program has OpenLinkProfiler between the
-							// 6th and 7th tab. If it does, then the line is deleted.
-							// To do this, the string is split into seven parts, and the string in between
-							// the 6th and 7th space is checked
-							// String str[] = line.split("\\s", 7);
+						//}
 
-						// if (str[5].contains("OpenLinkProfiler"))
-						// line = "";
-						// } else if (line.contains("Tbot-nutch")) {
-						// This if statement will check if the program has Tbot-nutch between the
-						// 6th and 7th tab. If it does, then the line is deleted.
-						// To do this, the string is split into seven parts, and the string in between
-						// the 6th and 7th space is checked
-						// String str[] = line.split("\\s", 7);
-
-						// if (str[5].contains("Tbot-nutch"))
-						// line = "";
-
-						// } else if (line.contains("barkrowler")) {
-						// This if statement will check if the program has barkrowler between the
-						// 6th and 7th tab. If it does, then the line is deleted.
-						// To do this, the string is split into seven parts, and the string in between
-						// the 6th and 7th space is checked
-						// String str[] = line.split("\\s", 7);
-
-						// if (str[5].contains("barkrowler"))
-						// line = "";
-
-						// }
-						else if (line.contains("Linespider")) {
+						//else if (line.contains("Linespider")) {
 							// This if statement will check if the program has Linespider between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Linespider"))
-								line = "";
+							//if (str[5].contains("Linespider"))
+								//line = "";
 
-						} else if (line.contains("MJ12bot")) {
+						//} else if (line.contains("MJ12bot")) {
 							// This if statement will check if the program has MJ12bot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("MJ12bot"))
-								line = "";
+							//if (str[5].contains("MJ12bot"))
+								//line = "";
 
-						} else if (line.contains("SeznamBot")) {
+						//} else if (line.contains("SeznamBot")) {
 							// This if statement will check if the program has SeznamBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Seznambot"))
-								line = "";
+							//if (str[5].contains("Seznambot"))
+								//line = "";
 
-						} else if (line.contains("strutbot")) {
+						//} else if (line.contains("strutbot")) {
 							// This if statement will check if the program has strutbot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("strutbot"))
-								line = "";
+							//if (str[5].contains("strutbot"))
+								//line = "";
 
-						} else if (line.contains("AccompanyBot")) {
+						//} else if (line.contains("AccompanyBot")) {
 							// This if statement will check if the program has AccompanyBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("AccompanyBot"))
-								line = "";
+							//if (str[5].contains("AccompanyBot"))
+								//line = "";
 
 						} else if (line.contains("MojeekBot")) {
 							// This if statement will check if the program has MojeekBot between the
@@ -753,150 +642,125 @@ public class WeblogStripper {
 							if (str[4].contains("MojeekBot"))
 								line = "";
 
-						} else if (line.contains("ZoominfoBot")) {
+						//} else if (line.contains("ZoominfoBot")) {
 							// This if statement will check if the program has ZoominfoBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("ZoominfoBot"))
-								line = "";
+							//if (str[5].contains("ZoominfoBot"))
+								//line = "";
 
-						} else if (line.contains("Adsbot")) {
+						//} else if (line.contains("Adsbot")) {
 							// This if statement will check if the program has Adsbot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Adsbot"))
-								line = "";
+							//if (str[5].contains("Adsbot"))
+								//line = "";
 
-						} else if (line.contains("BLEXBot")) {
+						//} else if (line.contains("BLEXBot")) {
 							// This if statement will check if the program has BLEXBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("BLEXBot"))
-								line = "";
+							//if (str[5].contains("BLEXBot"))
+								//line = "";
 
-						} else if (line.contains("bingbot")) {
+						//} else if (line.contains("bingbot")) {
 							// This if statement will check if the program has Bingbot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("bingbot"))
-								line = "";
+							//if (str[5].contains("bingbot"))
+								//line = "";
 
-						} else if (line.contains("AhrefsBot")) {
+						//} else if (line.contains("AhrefsBot")) {
 							// This if statement will check if the program has AhrefsBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("AhrefsBot"))
+							//if (str[5].contains("AhrefsBot"))
 								line = "";
 
-						} else if (line.contains("Googlebot")) {
+						//} else if (line.contains("Googlebot")) {
 							// This if statement will check if the program has Googlebot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Googlebot"))
-								line = "";
+							//if (str[5].contains("Googlebot"))
+								//line = "";
 
-						} else if (line.contains("applebot")) {
+						//} else if (line.contains("applebot")) {
 							// This if statement will check if the program has applebot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("applebot"))
-								line = "";
+							//if (str[5].contains("applebot"))
+								//line = "";
 
-						} else if (line.contains("Seekport+Crawler")) {
+						//} else if (line.contains("Seekport+Crawler")) {
 							// This if statement will check if the program has Seekport+Crawler between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Seekport+Crawler"))
-								line = "";
+							//if (str[5].contains("Seekport+Crawler"))
+								//line = "";
 
-						} else if (line.contains("8LEGS")) {
+						//} else if (line.contains("8LEGS")) {
 							// This if statement will check if the program has Tbot-nutch between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("8LEGS"))
-								line = "";
-						} else if (line.contains("Vagabondo")) {
+							//if (str[5].contains("8LEGS"))
+								//line = "";
+						//} else if (line.contains("Vagabondo")) {
 							// This if statement will check if the program has Vagabondo between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("Vagabondo"))
-								line = "";
+							//if (str[5].contains("Vagabondo"))
+								//line = "";
 
-						} else if (line.contains("PetalBot")) {
+						//} else if (line.contains("PetalBot")) {
 							// This if statement will check if the program has PetalBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("PetalBot"))
-								line = "";
-						} else if (line.contains("SemrushBot")) {
+							//if (str[5].contains("PetalBot"))
+								//line = "";
+						//} else if (line.contains("SemrushBot")) {
 							// This if statement will check if the program has SemrushBot between the
 							// 6th and 7th tab. If it does, then the line is deleted.
 							// To do this, the string is split into seven parts, and the string in between
 							// the 6th and 7th space is checked
-							String str[] = line.split("\\s", 7);
+							//String str[] = line.split("\\s", 7);
 
-							if (str[5].contains("SemrushBot"))
-								line = "";
+							//if (str[5].contains("SemrushBot"))
+								//line = "";
 
-						} // else if (line.contains("/favicon.ico")) {
-							// This if statement will check if any part of this line contains the
-							// /favicon.ico. If it does, the line is deleted.
-							// line = "";
-							// }
-
-						// else if (line.contains("webmeup-crawler")) {
-						// This if statement will check if any part of this line contains the
-						// /favicon.ico. If it does, the line is deleted.
-						// line = "";
-						// }
-
-						// else if (line.contains("/login.asp")) {
-						// This if statement will check if any part of this line contains the
-						// /login.asp. If it does, the line is deleted.
-						// line = "";
-						// } else if (line.contains("/robots.txt")) {
-						// This if statement will check if any part of this line contains the
-						// /robots.txt. If it does, the line is deleted.
-						// line = "";
-						// } else if (line.contains(".css")) {
-						// This if statement will check if any part of this line contains the
-						// .css. If it does, the line is deleted.
-						// line = "";
-						// }
-						else if (line.contains("/vals/")) {
+						} else if (line.contains("/vals/")) {
 							// This if statement will check if the line contains "\\s/vals/"
 							// If it does, then it will split the string into 5 parts and check
 							// after the second tab if it contains \\sheme/, if it does,
