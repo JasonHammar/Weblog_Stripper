@@ -16,14 +16,14 @@ public class WeblogStripper {
 		Scanner month = new Scanner(System.in);
 		boolean userFound = false;
 		boolean insOrDel = true;
-		File users = new File("Users");
+		File users = new File("C:\\Weblog Stripper\\usernames.txt");
 		Scanner userbots = new Scanner(users);
 		Scanner userNames = new Scanner(users);
 		Scanner botsAndUsers = new Scanner(users);
 		BST deletes = new BST();
 		BST names = new BST();
 		File file1 = new File("users2.txt");
-		File file3 = new File("Users.txt");
+		File file3 = new File("C:\\Weblog Stripper\\moreusernames.txt");
 		File file4 = new File("Users3.txt");
 		botsAndUsers = new Scanner(users);
 
