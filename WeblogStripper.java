@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -388,7 +389,7 @@ public class WeblogStripper {
 			String filename2 = "readfile" + daystring;// File name for the updated file
 			File file = new File(filename);
 
-			String directory = "C:\\done\\";// Where the raw log files will be located
+			String directory = "C:\\Weblog Stripper 2\\";// Where the raw log files will be located
 
 			File dir = new File(directory);
 
@@ -396,7 +397,7 @@ public class WeblogStripper {
 																// should be located in.
 			{
 				public boolean accept(File dir, String name) {
-					return name.startsWith("u_ex") && name.endsWith(".log");
+					return name.startsWith("u_ex210" + monthString) && name.endsWith(".log");
 				}
 			});
 
